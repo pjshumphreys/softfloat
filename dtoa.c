@@ -84,9 +84,12 @@ char* mydtoa(char *s, double n) {
         carry = ftoc(digit) > 4;
         break;
       }
+
       n = fsub(n, fmul(digit, weight));
-      *(c++) = digitLookup[ftoc(digit)];
-      output++;
+      if(output || fgt(digit, fltZero) || m == 0) {
+        *(c++) = digitLookup[ftoc(digit)];
+        output++;
+      }
     }
 
     if(m == 0) {
